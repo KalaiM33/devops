@@ -1,0 +1,25 @@
+- name: Using Ansible Replace
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Replace text in blog.txt 
+      replace:
+        path: /opt/finance/blog.txt
+        regexp: "xFusionCorp"
+        replace: "Nautilus"
+      when: inventory_hostname == "stapp01"
+
+    - name: Replace text in story.txt 
+      replace:
+        path: /opt/finance/story.txt
+        regexp: "Nautilus"
+        replace: "KodeKloud"
+      when: inventory_hostname == "stapp02"
+
+    - name: Replace text in media.txt 
+      replace:
+        path: /opt/finance/media.txt
+        regexp: "KodeKloud"
+        replace: "xFusionCorp Industries"
+      when: inventory_hostname == "stapp03"  
